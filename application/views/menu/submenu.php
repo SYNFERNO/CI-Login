@@ -40,7 +40,7 @@
                             <td><?= $sm['icon']; ?></td>
                             <td><?= $sm['is_active']; ?></td>
                             <td>
-                                <a href=""><span class="badge rounded-pill bg-success">Edit</span></a>
+                                <a href="" data-bs-toggle="modal" data-bs-target="#editSubMenu"><span class="badge rounded-pill bg-success">Edit</span></a>
                                 <a href=""><span class="badge rounded-pill bg-danger">Delete</span></a>
                             </td>
                         </tr>
@@ -54,12 +54,58 @@
         </div>
         <!-- End of Main Content -->
 
-        <!-- Modal -->
+        <!-- Modal Add new sub menu -->
         <div class="modal fade" id="addNewSubMenu" tabindex="-1" aria-labelledby="addNewSubMenuLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addNewSubMenuLabel">Add Sub Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form method="POST" action="<?= 'submenu' ?>">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input type="text" id="title" name="title" placeholder="Sub Menu Title" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <select name="menu_id" id="menu_id" class="form-control">
+                                    <option selected>Select menu</option>
+                                    <?php foreach ($menu as $m) : ?>
+                                        <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="url" id="url" placeholder="Sub Menu Url" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="icon" id="icon" placeholder="Sub Menu Icon" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check ml-1">
+                                    <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>
+                                    <label class="form-check-label" for="is_active">
+                                        Active?
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Edit sub menu -->
+        <div class="modal fade" id="editSubMenu" tabindex="-1" aria-labelledby="editSubMenuLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editSubMenuLabel">Add Sub Menu</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 

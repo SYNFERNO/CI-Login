@@ -81,20 +81,20 @@ class Auth extends CI_Controller
     }
     function _sendEmail($token, $type)
     {
-        $config = [
+        $config = Array(
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'email.testing.8778@gmail.com',
+            'smtp_user' => 'tesici123@gmail.com',
             'smtp_pass' => 'L0sstar0t',
             'smtp_port' => 465,
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
             'newline'   => "\r\n"
-        ];
-
+        );
+        $this->load->library('email');
         $this->email->initialize($config);
 
-        $this->email->from('email.testing.8778@gmail.com', 'Testing Verification');
+        $this->email->from('tesici123@gmail.com', 'Testing Verification');
         $this->email->to($this->input->post('email'));
         if ($type == 'verify') {
             $this->email->subject('Account Verification');
@@ -231,6 +231,7 @@ class Auth extends CI_Controller
     {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
+        echo $password;
 
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 

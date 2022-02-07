@@ -27,7 +27,7 @@
                                             <?= form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
                                         </div>
 
-                                        <button href="index.html" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
                                         <hr>
